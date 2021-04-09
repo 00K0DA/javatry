@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2021 the original author or authors.
+ * Copyright 2019-2019 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ public class Step02IfForTest extends PlainTestCase {
      * What string is sea variable at the method end? <br>
      * (メソッド終了時の変数 sea の中身は？)
      */
-    public void test_if_basic() { // example, so begin from the next method
+    public void test_if_basic() {
         int sea = 904;
         if (sea >= 904) {
             sea = 2001;
@@ -52,7 +52,7 @@ public class Step02IfForTest extends PlainTestCase {
         } else {
             sea = 7;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 7
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -67,7 +67,7 @@ public class Step02IfForTest extends PlainTestCase {
         } else {
             sea = 9;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 7
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -91,7 +91,7 @@ public class Step02IfForTest extends PlainTestCase {
         if (land) {
             sea = 10;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 10
     }
 
     // ===================================================================================
@@ -107,7 +107,7 @@ public class Step02IfForTest extends PlainTestCase {
                 sea = stage;
             }
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => dockside
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -117,7 +117,7 @@ public class Step02IfForTest extends PlainTestCase {
         for (String stage : stageList) {
             sea = stage;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => magiclamp
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -133,7 +133,7 @@ public class Step02IfForTest extends PlainTestCase {
                 break;
             }
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => hangar
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -142,14 +142,14 @@ public class Step02IfForTest extends PlainTestCase {
         StringBuilder sb = new StringBuilder();
         stageList.forEach(stage -> {
             if (sb.length() > 0) {
-                return;
+                return;//continue的な意味
             }
             if (stage.contains("i")) {
                 sb.append(stage);
             }
         });
         String sea = sb.toString();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => docksidemagiclamp→dockside
     }
 
     // ===================================================================================
@@ -161,6 +161,27 @@ public class Step02IfForTest extends PlainTestCase {
      */
     public void test_iffor_making() {
         // write if-for here
+        List<String> stageList = prepareStageList();
+        List<String> answers = new ArrayList<>();
+        for (String stage : stageList) {
+            if (stage.contains("a")) {
+                answers.add(stage);
+            }
+        }
+        log(answers);
+    }
+
+    public void test_iffor_making2() {
+        List<String> stageList = prepareStageList();
+        StringBuilder sb = new StringBuilder();
+        stageList.forEach(stage -> {
+            if (stage.contains("a")) {
+                sb.append(stage);
+            }
+        });
+        String answer = sb.toString();
+        log(sb);
+        log(answer);
     }
 
     // ===================================================================================
@@ -171,6 +192,7 @@ public class Step02IfForTest extends PlainTestCase {
      * (foreach文をforEach()メソッドへの置き換えてみましょう (修正前と修正後で実行結果が同じになるように))
      */
     public void test_iffor_refactor_foreach_to_forEach() {
+        //TODO ookoda 一旦先にSTEP3へ・・・
         List<String> stageList = prepareStageList();
         String sea = null;
         for (String stage : stageList) {

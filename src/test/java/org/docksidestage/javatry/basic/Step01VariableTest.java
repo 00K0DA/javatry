@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2021 the original author or authors.
+ * Copyright 2019-2019 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ public class Step01VariableTest extends PlainTestCase {
      * What string is sea variable at the method end? <br>
      * (メソッド終了時の変数 sea の中身は？)
      */
-    public void test_variable_basic() { // example, so begin from the next method
+    public void test_variable_basic() {
         String sea = "mystic";
         log(sea); // your answer? => mystic
     }
@@ -47,16 +47,16 @@ public class Step01VariableTest extends PlainTestCase {
         String piari = null;
         String dstore = "mai";
         sea = sea + land + piari + ":" + dstore;
-        log(sea); // your answer? => 
+        log(sea); // your answer? =>mystic8null:mai
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_variable_reassigned_basic() {
         String sea = "mystic";
         String land = "oneman";
-        sea = land;
+        sea = land;//sea="oneman"
         land = land + "'s dreams";
-        log(sea); // your answer? => 
+        log(sea); // your answer? => oneman;
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -65,7 +65,7 @@ public class Step01VariableTest extends PlainTestCase {
         int land = 415;
         sea = land;
         land++;
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 415
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -74,34 +74,34 @@ public class Step01VariableTest extends PlainTestCase {
         BigDecimal land = new BigDecimal(415);
         sea = land;
         sea = land.add(new BigDecimal(1));
-        sea.add(new BigDecimal(1));
-        log(sea); // your answer? => 
+        sea.add(new BigDecimal(1));//pythonで言う sort! とsort 的な感じやろ！！
+        log(sea); // your answer? => 416
     }
 
     // ===================================================================================
     //                                                                   Instance Variable
     //                                                                   =================
     private String instanceBroadway;
-    private int instanceDockside;
+    private int instanceDockside;//object型でないプリミティブインスタンス型だと0で初期化　
     private Integer instanceHangar;
     private String instanceMagiclamp;
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_variable_instance_variable_default_String() {
         String sea = instanceBroadway;
-        log(sea); // your answer? => 
+        log(sea); // your answer? =>null
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_variable_instance_variable_default_int() {
         int sea = instanceDockside;
-        log(sea); // your answer? => 
+        log(sea); // your answer? =>null→0
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_variable_instance_variable_default_Integer() {
         Integer sea = instanceHangar;
-        log(sea); // your answer? => 
+        log(sea); // your answer? =>null
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -110,7 +110,7 @@ public class Step01VariableTest extends PlainTestCase {
         instanceMagiclamp = "magician";
         helpInstanceVariableViaMethod(instanceMagiclamp);
         String sea = instanceBroadway + "|" + instanceDockside + "|" + instanceHangar + "|" + instanceMagiclamp;
-        log(sea); // your answer? => 
+        log(sea); // your answer? => bigband|1|null|burn→magician
     }
 
     private void helpInstanceVariableViaMethod(String instanceMagiclamp) {
@@ -129,8 +129,9 @@ public class Step01VariableTest extends PlainTestCase {
     public void test_variable_method_argument_immutable_methodcall() {
         String sea = "harbor";
         int land = 415;
+
         helpMethodArgumentImmutableMethodcall(sea, land);
-        log(sea); // your answer? => 
+        log(sea); // your answer? =>harbor
     }
 
     private void helpMethodArgumentImmutableMethodcall(String sea, int land) {
@@ -147,7 +148,7 @@ public class Step01VariableTest extends PlainTestCase {
         StringBuilder sea = new StringBuilder("harbor");
         int land = 415;
         helpMethodArgumentMethodcall(sea, land);
-        log(sea); // your answer? => 
+        log(sea); // your answer? => ["harbor","416"] =>harbor416
     }
 
     private void helpMethodArgumentMethodcall(StringBuilder sea, int land) {
@@ -186,13 +187,23 @@ public class Step01VariableTest extends PlainTestCase {
      * (変数を以下のように定義しましょう):
      * <pre>
      * o ローカル変数、名前はsea, 型はString, 初期値は "mystic"
+     * ローカル変数とはメソッドの中でしか見れない。
      * o ローカル変数、名前はland, 型はInteger, 初期値は null
      * o インスタンス変数、名前はpiari, 型はint, 初期値なし
      * o すべての変数をlog()でカンマ区切りの文字列で表示
+     * インスタンス変数はインスタンスが保持している変数
+     * ローカル変数は初期化されないよ
      * </pre>
      */
+    private int piari;//修飾子(modifier) ：　可視性　要はスコープ インスタンス変数でmodifierを省略することはない
+
     public void test_variable_writing() {
         // define variables here
+        String sea = "mystic";
+        Integer land = null;
+        //        int piari;
+        log(sea + "," + land + "," + piari);
+
     }
 
     // ===================================================================================

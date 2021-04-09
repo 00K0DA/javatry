@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2021 the original author or authors.
+ * Copyright 2019-2019 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,40 +17,55 @@ package org.docksidestage.bizfw.basic.buyticket;
 
 /**
  * @author jflute
+ * @author stf02286
  */
-public class Ticket {
+public interface Ticket {
 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    private final int displayPrice;
-    private boolean alreadyIn;
-
-    // ===================================================================================
-    //                                                                         Constructor
-    //                                                                         ===========
-    public Ticket(int displayPrice) {
-        this.displayPrice = displayPrice;
-    }
+    //    int displayPrice = 0;
+    //    String ticketType = "";//固定情報
+    //    static int usageCount = 0;
+    //    boolean alreadyIn = false;//状態
+    //
+    //    // ===================================================================================
+    //    //                                                                         Constructor
+    //    //                                                                         ===========
+    //    public default Ticket(Passport passport) {
+    //        displayPrice = passport.getPrice();
+    //        ticketType = passport.getTicketType();
+    //        usageCount = passport.getUsageCount();
+    //        if (this.ticketType == "")
+    //            ;
+    //    }
 
     // ===================================================================================
     //                                                                             In Park
     //                                                                             =======
-    public void doInPark() {
-        if (alreadyIn) {
-            throw new IllegalStateException("Already in park by this ticket: displayedPrice=" + displayPrice);
-        }
-        alreadyIn = true;
-    }
+    void doInPark();
+
+    // ===================================================================================
+    //                                                                             Out Park
+    //                                                                             =======
+    void doOutPark();
 
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========
-    public int getDisplayPrice() {
-        return displayPrice;
-    }
+    int getTicketPrice();
 
-    public boolean isAlreadyIn() {
-        return alreadyIn;
-    }
+    int getRegularPrice();
+
+    // STEP6　で怒られるため
+    int getDisplayPrice();
+
+    boolean isAlreadyIn();
+
+    String getTicketType();
+
+    int getChange();
+
+    int getUsableCount();
+
 }
