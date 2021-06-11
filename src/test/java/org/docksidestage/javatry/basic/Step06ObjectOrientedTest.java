@@ -21,6 +21,7 @@ import org.docksidestage.bizfw.basic.objanimal.Animal;
 import org.docksidestage.bizfw.basic.objanimal.BarkedSound;
 import org.docksidestage.bizfw.basic.objanimal.Cat;
 import org.docksidestage.bizfw.basic.objanimal.Dog;
+import org.docksidestage.bizfw.basic.objanimal.Lion;
 import org.docksidestage.bizfw.basic.objanimal.Zombie;
 import org.docksidestage.bizfw.basic.objanimal.loud.AlarmClock;
 import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
@@ -46,6 +47,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * Fix 5 mistakes in buying one-day passport and in-park process. <br>
      * (OneDayPassportを買って InPark する処理の中で、間違いが5つあるので修正しましょう)
      */
+    @SuppressWarnings("unused")
     public void test_objectOriented_aboutObject_againstObject() {
         //
         // [ticket booth info]
@@ -142,8 +144,8 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         //
         // if step05 has been finished, you can use this code by jflute (2019/06/15)
         Ticket ticket = booth.buyOneDayPassport(10000);
-        booth.buyOneDayPassport(10000); // as temporary, remove if you finished step05
-        Ticket ticket = new Ticket(7400); // also here
+        //booth.buyOneDayPassport(10000); // as temporary, remove if you finished step05
+        //Ticket ticket = new Ticket(7400); // also here
 
         // *buyOneDayPassport() has this process:
         //        if (quantity <= 0) {
@@ -282,6 +284,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         log(land); // your answer? => uooo
     }
 
+    // interfaceは機能を切り出す抽象クラス
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_objectOriented_polymorphism_interface_hierarchy() {
         Loudable loudable = new AlarmClock();
@@ -311,6 +314,9 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         ((FastRunner) testDog).run();
         log(testDog.bark().getBarkWord());
     }
+    // extendsは本質を表すものに使うとよい
+    // CatでいうAnimalのようなもの(1つしか継承できないから)
+    // AndroidのEventListener等のcallback(onclick等)はInterfaceで実装するべき(ベーシックな思想として)
 
     // ===================================================================================
     //                                                                 Polymorphism Making
@@ -320,7 +326,8 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * (FastRunnerではないAnimalクラスのコンクリートクラスをobjanimalパッケージに作成しましょう (実装はお好きなように))
      */
     public void test_objectOriented_polymorphism_makeConcrete() {
-        // your confirmation code here
+        Animal lion = new Lion();
+        log(lion.bark().getBarkWord());
     }
 
     /**
@@ -328,7 +335,17 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * (Animalクラスの一部のコンクリートクラスだけがimplementsするインターフェースをobjanimal配下の新しいパッケージに作成しましょう (実装はお好きなように))
      */
     public void test_objectOriented_polymorphism_makeInterface() {
-        // your confirmation code here
+        Dog testDog = new Dog();
+        int maxHp = testDog.getHitPoint();
+        while (testDog.getHitPoint() > 3) {
+            testDog.bark();
+            log("犬の残り体力: " + testDog.getHitPoint());
+        }
+
+        for (int i = 0; i < 8; i++) {
+            testDog.eat();
+            log("犬の残り体力: " + testDog.getHitPoint());
+        }
     }
 
     // ===================================================================================

@@ -19,7 +19,7 @@ package org.docksidestage.bizfw.basic.objanimal;
  * The object for zombie(ゾンビ).
  * @author jflute
  */
-public class Zombie extends Animal {
+public class Zombie extends Animal implements Eat {
 
     // ===================================================================================
     //                                                                           Attribute
@@ -77,5 +77,13 @@ public class Zombie extends Animal {
     //                                                                            ========
     public ZombieDiary getZombieDiary() {
         return zombieDiary;
+    }
+
+    // ===================================================================================
+    //                                                                            Eat
+    //                                                                            ========
+    @Override
+    public void eat() {
+        // do nothing, infinity hit point
     }
 }

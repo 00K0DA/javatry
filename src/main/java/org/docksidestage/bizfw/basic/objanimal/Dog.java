@@ -24,7 +24,7 @@ import org.slf4j.LoggerFactory;
  * @author jflute
  * @author 81704
  */
-public class Dog extends Animal implements FastRunner {
+public class Dog extends Animal implements FastRunner, Eat {
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
@@ -43,8 +43,28 @@ public class Dog extends Animal implements FastRunner {
         return "wan"; // bow? in English
     }
 
+    // ===================================================================================
+    //                                                                              Runner
+    //                                                                              ======
     @Override
     public void run() {
-        logger.debug("I'm Pochi!!, ...Running now: class Dog");
+        logger.debug("I'm Pochi!!, ...Running now");
+    }
+
+    // ===================================================================================
+    //                                                                                 EAT
+    //                                                                                 ===
+    @Override
+    public void eat() {
+        if (this.getInitialHitPoint() == this.hitPoint) {
+            logger.debug("犬はお腹いっぱいだ");
+        } else {
+            logger.debug("犬は肉を食べた");
+            this.hitPoint += 2;
+            // HP無限増殖防止
+            if (this.getInitialHitPoint() < this.hitPoint) {
+                this.hitPoint = this.getInitialHitPoint();
+            }
+        }
     }
 }
